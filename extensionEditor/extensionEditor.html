@@ -1178,7 +1178,7 @@ parseDanbooruText.addEventListener("drop",
 		text = text.replace( /\r\n|\r/g, "\n" );
 		
 		var sitename = "";	// danbooru, gelbooru, sankaku
-		if( text.match( /^\s*Danbooru/ ) && text.match( /\n\? .* \d?/ ) ){
+		if( text.match( /Danbooru/ ) && text.match( /\?\n.* \d?/ ) ){
 			sitename = "danbooru";
 		} else if( text.match( /Sankaku Channel/ ) && text.match( / \(\?\) / ) ){
 			sitename = "sankaku";
@@ -1195,6 +1195,7 @@ parseDanbooruText.addEventListener("drop",
 			text.match( /\nInformation\nID\: (\d+)\n/ );
 			postID = RegExp.$1;
 			url = "https://danbooru.donmai.us/posts/" + postID;
+			text = text.replaceAll("?\n","? ");
 		} else if( sitename == "sankaku" ){
 			text.match( /\nSankaku Channel\/Post (\d+)\n/ );
 			postID = RegExp.$1;
